@@ -36,7 +36,7 @@
 <div id="dlg" class="easyui-dialog" title="添加营销记录" closed="true"
      style="width: 500px;height:300px" buttons="#bt">
     <form  id="fm" method="post">
-        用户名:<input type="text"  class="easyui-validatebox"  required="required" id="userName02" name="userName"/><br/><br/>
+        用户名:<input type="text"  class="easyui-validatebox"  required="required" id="userName02" name="userName" /><br/><br/>
         真实名称:<input type="text" id="trueName" class="easyui-validatebox" name="trueName"  required="required"/><br/><br/>
         邮箱:<input type="text" id="email02" name="email"  class="easyui-validatebox" required="required"/><br/><br/>
         手机号:<input type="text" name="phone"  id="phone02" class="easyui-validatebox" required="required"/><br/><br/>
