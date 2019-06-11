@@ -1,17 +1,13 @@
 package xyz.xkun.crm.dao;
 
+import org.springframework.stereotype.Repository;
+import xyz.xkun.crm.base.BaseDao;
+import xyz.xkun.crm.dto.ModuleDto;
 import xyz.xkun.crm.po.Module;
 
-public interface ModuleMapper {
-    int deleteByPrimaryKey(Integer id);
+import java.util.List;
 
-    int insert(Module record);
-
-    int insertSelective(Module record);
-
-    Module selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Module record);
-
-    int updateByPrimaryKey(Module record);
+@Repository
+public interface ModuleMapper extends BaseDao<Module> {
+    public List<ModuleDto> queryAllModuleByRoleId(Integer roleId);
 }

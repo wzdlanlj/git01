@@ -33,6 +33,7 @@ xyz\xkun\crm\utils\MathUtil.class
 xyz\xkun\crm\base\BaseService.class
 xyz\xkun\crm\dao\UserMapper.class
 xyz\xkun\crm\dao\PermissionMapper.class
+xyz\xkun\crm\query\RoleQuery.class
 xyz\xkun\crm\dao\RoleMapper.class
 xyz\xkun\crm\utils\AssertUtil.class
 xyz\xkun\crm\controller\SaleChanceController.class

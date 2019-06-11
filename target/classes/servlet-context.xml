@@ -47,6 +47,7 @@
             <mvc:exclude-mapping path="/css/**"/>
             <mvc:exclude-mapping path="/jquery-easyui-1.3.3/**"/>
             <mvc:exclude-mapping path="/js/**"/>
+            <mvc:exclude-mapping path="/zTree_v3-3.5.32/**"/>
             <bean class="xyz.xkun.crm.interceptions.LoginInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
