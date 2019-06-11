@@ -22,7 +22,7 @@
     delete from t_role
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="xyz.xkun.crm.po.Role">
+    <insert id="save" parameterType="xyz.xkun.crm.po.Role">
         insert into t_role
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -109,8 +109,16 @@
                 and role_name like concat("%",#{roleName},"%")
             </if>
             <if test="null!=createDate and ''!=createDate">
-                and create_date like concat("%",#{createDate},"%")
+                and create_date &lt;=#{createDate}
             </if>
         </where>
     </select>
+
+    <!--通过名字查找-->
+    <select id="queryRoleByName" parameterType="string" resultType="int">
+        SELECT count(1)
+        FROM t_role
+        WHERE is_valid = 1
+        AND role_name = #{roleName}
+</select>
 </mapper>

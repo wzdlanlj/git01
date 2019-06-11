@@ -11,4 +11,6 @@ import java.util.Map;
 public interface RoleMapper extends BaseDao<Role> {
 
     public List<Map> queryAllRoles();
+
+    public Integer queryRoleByName(String roleName);
 }

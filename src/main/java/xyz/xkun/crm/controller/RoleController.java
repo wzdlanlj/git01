@@ -3,7 +3,12 @@ package xyz.xkun.crm.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import xyz.xkun.crm.constants.CrmConstant;
+import xyz.xkun.crm.model.ResultInfo;
+import xyz.xkun.crm.po.Role;
+import xyz.xkun.crm.query.RoleQuery;
 import xyz.xkun.crm.service.RoleService;
 
 import java.util.List;
@@ -32,5 +37,38 @@ public class RoleController extends BaseController {
     @ResponseBody
     public List<Map> queryAllRoles() {
         return roleService.queryAllRoles();
+    }
+
+
+    /**
+     * 分页查询所有角色
+     *
+     * @param page
+     * @param rows
+     * @param query
+     * @return
+     */
+    @RequestMapping("queryRolesByParams")
+    @ResponseBody
+    public Map<String, Object> queryRolesByParams(@RequestParam(defaultValue = "1") Integer page,
+                                                  @RequestParam(defaultValue = "10") Integer rows,
+                                                  RoleQuery query) {
+        query.setPageNum(page);
+        query.setPageSize(rows);
+        return roleService.queryForPage(query);
+
+    }
+
+    /**
+     * 添加或删除
+     *
+     * @param role
+     * @return
+     */
+    @RequestMapping("saveOrUpdateRole")
+    @ResponseBody
+    public ResultInfo saveOrUpdateRole(Role role) {
+        roleService.saveOrUpdateRole(role);
+        return success(CrmConstant.OPS_SUCCESS_CODE, CrmConstant.OPS_SUCCESS_MSG);
     }
 }
