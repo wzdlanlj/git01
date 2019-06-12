@@ -1,17 +1,14 @@
 package xyz.xkun.crm.dao;
 
+import org.springframework.stereotype.Repository;
+import xyz.xkun.crm.base.BaseDao;
 import xyz.xkun.crm.po.Permission;
 
-public interface PermissionMapper {
-    int deleteByPrimaryKey(Integer id);
+@Repository
+public interface PermissionMapper extends BaseDao<Permission> {
 
-    int insert(Permission record);
+    public Integer queryModulesByRoleId(Integer roleId);
 
-    int insertSelective(Permission record);
+    public Integer deleteModulesByRoleId(Integer roleId);
 
-    Permission selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Permission record);
-
-    int updateByPrimaryKey(Permission record);
 }
