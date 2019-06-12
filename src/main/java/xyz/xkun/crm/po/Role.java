@@ -69,4 +69,5 @@ public class Role {
     public void setIsValid(Integer isValid) {
         this.isValid = isValid;
     }
+
 }

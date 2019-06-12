@@ -175,9 +175,11 @@ public class UserService extends BaseService<UserDto> {
         map.put("total", pageInfo.getTotal());
         map.put("rows", pageInfo.getList());
         userDtos = pageInfo.getList();
-        *//**
-         * 把字符串1,2,3 变成[1,2,3]
-         *//*
+        */
+
+    /**
+     * 把字符串1,2,3 变成[1,2,3]
+     *//*
         for (UserDto userDto : userDtos) {
             String rolerIdsStr = userDto.getRoleIdsStr();
             if (null != rolerIdsStr) {

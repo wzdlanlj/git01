@@ -163,4 +163,50 @@
 	ORDER BY
 	    m.id
   </select>
+
+    <!--分页查询-->
+    <select id="queryByParams" parameterType="moduleQuery" resultMap="BaseResultMap">
+        SELECT * FROM t_module
+        <where>
+            is_valid = 1
+            <if test="null!=moduleName and ''!=moduleName">
+                and module_name LIKE concat("%",#{moduleName},"%")
+            </if>
+            <if test="null!=parentId">
+                and parent_id LIKE concat("%",#{parentId},"%")
+            </if>
+            <if test="null!=grade">
+                and grade LIKE concat("%",#{grade},"%")
+            </if>
+            <if test="null!=optValue and ''!=optValue">
+                and opt_value LIKE concat("%",#{optValue},"%")
+            </if>
+        </where>
+    </select>
+
+    <!--通过层级查询模块-->
+    <select id="queryModulesByGrade" parameterType="int" resultType="map">
+        SELECT
+            t_module.id,
+            t_module.module_name
+        FROM
+            t_module
+        WHERE
+            t_module.is_valid = 1
+        AND
+            t_module.grade = #{grade}
+    </select>
+
+    <!--查询模块名称-->
+    <select id="queryByModuleName" resultType="string" parameterType="int">
+        SELECT COUNT(1) FROM t_module WHERE is_valid = 1 AND module_name = #{moduleName}
+    </select>
+    <!--查询权限码-->
+    <select id="queryByModuleOptValue" resultType="string" parameterType="int">
+        SELECT COUNT(1) FROM t_module WHERE is_valid = 1 AND opt_value = #{optValue}
+    </select>
+
+
+    <!--添加模块-->
+
 </mapper>

@@ -23,7 +23,7 @@ function closeDlg() {
 //添加
 function openAddUserDailog() {
     openAddOrUpdateDlg("dlg","添加用户");
-    $("#userName02").attr("disabled",false);
+/*    $("#userName02").attr("disabled",false);*/
 }
 function saveOrUpdateUser() {
     saveOrUpdateData("fm",ctx+"/user/saveOrUpdateUser","dlg",queryUsersByParams);
@@ -32,7 +32,7 @@ function saveOrUpdateUser() {
 //更新
 function openModifyUserDialog() {
     openModifyDialog("dg", "fm", "dlg", "更新用户");
-    $("#userName02").attr("disabled",true);
+    /*$("#userName02").attr("disabled",true);*/
     /*$("#roleIds").*/
 }
 // 删除
