@@ -11,4 +11,8 @@ public interface PermissionMapper extends BaseDao<Permission> {
 
     public Integer deleteModulesByRoleId(Integer roleId);
 
+    public Integer queryModulesByAclValue(String aclValue);
+
+    public Integer deleteModulesByAclValue(String aclValue);
+
 }

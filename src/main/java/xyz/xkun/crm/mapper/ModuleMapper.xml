@@ -198,15 +198,19 @@
     </select>
 
     <!--查询模块名称-->
-    <select id="queryByModuleName" resultType="string" parameterType="int">
+    <select id="queryByModuleName" resultType="int" parameterType="string">
         SELECT COUNT(1) FROM t_module WHERE is_valid = 1 AND module_name = #{moduleName}
     </select>
     <!--查询权限码-->
-    <select id="queryByModuleOptValue" resultType="string" parameterType="int">
+    <select id="queryByModuleOptValue" resultType="int" parameterType="string">
         SELECT COUNT(1) FROM t_module WHERE is_valid = 1 AND opt_value = #{optValue}
     </select>
-
-
-    <!--添加模块-->
-
+    <!--批量删除-->
+    <update id="deleteBatchByOptValue" parameterType="string">
+        update t_module set is_valid=0 where opt_value LIKE concat(#{optValue},"%")
+    </update>
+    <!--查询数量-->
+    <select id="selectTotalByOptValue" parameterType="string" resultType="int">
+        SELECT count(*) FROM t_module WHERE opt_value LIKE concat(#{optValue},"%")
+    </select>
 </mapper>

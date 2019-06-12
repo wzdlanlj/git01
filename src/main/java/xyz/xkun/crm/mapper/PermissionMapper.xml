@@ -105,4 +105,20 @@
             (#{item.roleId},#{item.moduleId},#{item.aclValue},#{item.createDate},#{item.updateDate})
         </foreach>
     </insert>
+
+    <!--通过角色Id查询权限总数-->
+    <select id="queryModulesByAclValue" parameterType="string" resultType="int">
+        SELECT COUNT(*) FROM t_permission WHERE acl_value LIKE concat(#{aclValue},"%")
+    </select>
+
+    <!--通过角色Id删除权限-->
+    <delete id="deleteModulesByAclValue" parameterType="string">
+        DELETE FROM t_permission WHERE acl_value LIKE concat(#{aclValue},"%")
+    </delete>
 </mapper>
+
+
+
+
+
+

@@ -196,6 +196,8 @@ public class UserService extends BaseService<UserDto> {
     }*/
 
     //批量删除用户
+    //两条执行sql语句时,可能两条语句中如果出现错误,就会出现前者删除后者无更改,数据不一致
+    //通过将bean交个spring代理 来实现事物的自动回滚
     public void deleteUsers(Integer[] ids) {
         if (null != ids && ids.length > 0) {
             for (Integer userId : ids) {
@@ -212,9 +214,10 @@ public class UserService extends BaseService<UserDto> {
             }
         }
     }
-    /**
-     * 两条执行sql语句时,可能两条语句中如果出现错误,就会出现前者删除后者无更改,数据不一致
-     */
+
+    public List<String> queryAllAclValueByUserId(Integer userId) {
+        return userMapper.queryAllAclValueByUserId(userId);
+    }
 }
 
 

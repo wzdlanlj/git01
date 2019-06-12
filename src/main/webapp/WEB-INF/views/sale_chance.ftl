@@ -28,9 +28,19 @@
     </thead>
 </table>
 <div id="tb">
-    <a href="javascript:openAddSaleChacneDialog()" class="easyui-linkbutton" iconCls="icon-save" plain="true">添加</a>
-    <a href="javascript:openModifySaleChanceDialog()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">更新</a>
-    <a href="javascript:deleteSaleChance()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+    <#if permissions??>
+        <#if permissions?seq_contains("101001")>
+            <a href="javascript:openAddSaleChacneDialog()" class="easyui-linkbutton" iconCls="icon-save"
+               plain="true">添加</a>
+        </#if>
+        <#if permissions?seq_contains("101002")>
+            <a href="javascript:openModifySaleChanceDialog()" class="easyui-linkbutton" iconCls="icon-edit"
+               plain="true">更新</a>
+        </#if>
+        <#if permissions?seq_contains("101003")>
+            <a href="javascript:deleteSaleChance()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+        </#if>
+    </#if>
     <br/>
     客户名称:<input type="text" id="customerName"/>
     状态:

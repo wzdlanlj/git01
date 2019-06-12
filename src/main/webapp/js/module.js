@@ -46,7 +46,26 @@ function queryModulesByParams() {
     });
 }
 
-//添加
+//打开添加dialog
 function openAddModuleDailog() {
     openAddOrUpdateDlg("dlg", "模块添加");
+}
+
+//发送请求添加或更新
+function saveOrUpdateModule() {
+    saveOrUpdateData("fm", ctx + "/module/saveOrUpdateModule", "dlg", queryModulesByParams);
+}
+
+//关闭dialog
+function closeDlg() {
+    closeDlgData("dlg");
+}
+
+//打开更新
+function openModifyModuleDialog() {
+    $.messager.alert("警告", "功能已被禁用");
+}
+
+function deleteModule() {
+    deleteData("dg", ctx + "/module/deleteModule", queryModulesByParams);
 }

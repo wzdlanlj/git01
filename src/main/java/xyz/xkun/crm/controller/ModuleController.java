@@ -5,7 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import xyz.xkun.crm.constants.CrmConstant;
 import xyz.xkun.crm.dto.ModuleDto;
+import xyz.xkun.crm.model.ResultInfo;
+import xyz.xkun.crm.po.Module;
 import xyz.xkun.crm.query.ModuleQuery;
 import xyz.xkun.crm.service.ModuleService;
 
@@ -27,21 +30,21 @@ public class ModuleController extends BaseController {
     private ModuleService moduleService;
 
     @RequestMapping("index")
-    public String index(){
+    public String index() {
         return "module";
     }
 
     @RequestMapping("queryAllModuleByRoleId")
     @ResponseBody
-    public List<ModuleDto> queryAllModuleByRoleId(Integer roleId){
+    public List<ModuleDto> queryAllModuleByRoleId(Integer roleId) {
         return moduleService.queryAllModuleByRoleId(roleId);
     }
 
     @RequestMapping("queryModulesByParams")
     @ResponseBody
     public Map<String, Object> queryModulesByParams(@RequestParam(defaultValue = "1") Integer page,
-                                                     @RequestParam(defaultValue = "10") Integer rows,
-                                                     ModuleQuery query) {
+                                                    @RequestParam(defaultValue = "10") Integer rows,
+                                                    ModuleQuery query) {
         query.setPageNum(page);
         query.setPageSize(rows);
         return moduleService.queryForPage(query);
@@ -49,7 +52,21 @@ public class ModuleController extends BaseController {
 
     @RequestMapping("queryModulesByGrade")
     @ResponseBody
-    public List<Map> queryModulesByGrade(Integer grade){
+    public List<Map> queryModulesByGrade(Integer grade) {
         return moduleService.queryModulesByGrade(grade);
+    }
+
+    @RequestMapping("saveOrUpdateModule")
+    @ResponseBody
+    public ResultInfo saveOrUpdateModule(Module module) {
+        moduleService.saveOrUpdateModule(module);
+        return success(CrmConstant.OPS_SUCCESS_CODE, CrmConstant.OPS_SUCCESS_MSG);
+    }
+
+    @RequestMapping("deleteModule")
+    @ResponseBody
+    public ResultInfo deleteModule(Integer[] ids) {
+        moduleService.deleteModule(ids);
+        return success(CrmConstant.OPS_SUCCESS_CODE, CrmConstant.OPS_SUCCESS_MSG);
     }
 }

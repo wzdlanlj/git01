@@ -19,4 +19,8 @@ public interface ModuleMapper extends BaseDao<Module> {
     public Integer queryByModuleName(String moduleName);
 
     public Integer queryByModuleOptValue(String optValue);
+
+    public Integer deleteBatchByOptValue(String optValue);
+
+    public Integer selectTotalByOptValue(String optValue);
 }

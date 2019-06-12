@@ -20,4 +20,6 @@ public interface UserMapper extends BaseDao<UserDto> {
 
     public Integer fakeDelete(Integer userId);
 
+    public List<String> queryAllAclValueByUserId(Integer userId);
+
 }
