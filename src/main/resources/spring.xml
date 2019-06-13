@@ -17,7 +17,7 @@
         <context:exclude-filter type="annotation"
                                 expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
-    <aop:aspectj-autoproxy/>
+
 
     <!-- 配置数据源 -->
     <!-- 配置c3p0 数据源 -->

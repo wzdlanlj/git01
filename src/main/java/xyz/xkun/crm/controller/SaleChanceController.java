@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import xyz.xkun.crm.annotation.RequestPermission;
 import xyz.xkun.crm.constants.CrmConstant;
 import xyz.xkun.crm.model.ResultInfo;
 import xyz.xkun.crm.po.SaleChance;
@@ -34,6 +35,7 @@ public class SaleChanceController extends BaseController {
      *
      * @return
      */
+    @RequestPermission(aclValue = "10")
     @RequestMapping("index")
     public String index(HttpServletRequest request) {
         String state = request.getParameter("state");
@@ -52,6 +54,7 @@ public class SaleChanceController extends BaseController {
      * @param query
      * @return
      */
+
     @RequestMapping("querySaleChancesByParams")
     @ResponseBody
     public Map<String, Object> querySaleChancesByParams(Integer page,
@@ -61,6 +64,7 @@ public class SaleChanceController extends BaseController {
         return saleChanceService.queryForPage(query);
     }
 
+    @RequestPermission(aclValue = "101001")
     @RequestMapping("saveOrUpdateSaleChance")
     @ResponseBody
     public ResultInfo saveOrUpdateSaleChance(SaleChance saleChance, HttpServletRequest request) {
@@ -75,6 +79,7 @@ public class SaleChanceController extends BaseController {
         return saleChanceService.queryCustomerManagers();
     }
 
+    @RequestPermission(aclValue = "101003")
     @RequestMapping("deleteSaleChanceBatch")
     @ResponseBody
     public ResultInfo deleteSaleChanceBatch(Integer[] ids) {
