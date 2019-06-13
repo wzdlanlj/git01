@@ -51,7 +51,8 @@ public class permissionAdaptor {
          */
         List<String> permissions = (List<String>) session.getAttribute(CrmConstant.USER_PERMISSIONS);
 
-        AssertUtil.isTrue(CollectionUtils.isEmpty(permissions) || permissions.contains(aclValue), "没有权限访问");
+        System.out.println();
+        AssertUtil.isTrue(CollectionUtils.isEmpty(permissions) || !permissions.contains(aclValue), "没有权限访问");
 
 
         result = pjp.proceed();
