@@ -62,6 +62,13 @@ public class CustomerController extends BaseController {
     public ResultInfo deleteCustomer(Integer[] ids) {
         System.out.println(Arrays.toString(ids));
         customerService.deleteBatch(ids);
-        return success(CrmConstant.OPS_SUCCESS_CODE,CrmConstant.OPS_SUCCESS_MSG);
+        return success(CrmConstant.OPS_SUCCESS_CODE, CrmConstant.OPS_SUCCESS_MSG);
+    }
+
+    @RequestMapping("addLossCustomerds")
+    @ResponseBody
+    public ResultInfo addLossCustomerds() {
+        customerService.addLossCustomerds();
+        return success(CrmConstant.OPS_SUCCESS_CODE, CrmConstant.OPS_SUCCESS_MSG);
     }
 }

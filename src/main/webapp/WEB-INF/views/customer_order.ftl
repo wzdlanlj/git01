@@ -35,10 +35,8 @@
                 <th field="orderNo" name="orderNo" width="50" >订单号</th>
                 <th field="orderDate" name="orderDate" width="100" >订单日期</th>
                 <th field="address" name="address" width="100" >地址</th>
-                <th field="state" name="address" width="100" formatter="">状态</th>
-                <th field="op" name="address" width="100" formatter="">操作</th>
-                <#--<th field="state" name="address" width="100" formatter="formateState">状态</th>
-                <th field="op" name="address" width="100" formatter="formateOp">操作</th>-->
+                <th field="state" name="address" width="100" formatter="formateState">状态</th>
+                <th field="op" name="address" width="100" formatter="formateOp">操作</th>
             </tr>
             </thead>
         </table>

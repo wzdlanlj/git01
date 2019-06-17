@@ -13,4 +13,8 @@ public interface CustomerMapper extends BaseDao<Customer> {
     public List<Map> queryDataDicsByDicName(String dicName);
 
     public Integer deleteCustomer(Integer id);
+
+    public List<Customer> queryLossCustomerds();
+
+    public Integer updateCustomerState(List<Customer> customers);
 }

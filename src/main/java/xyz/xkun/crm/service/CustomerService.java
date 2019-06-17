@@ -5,12 +5,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import xyz.xkun.crm.base.BaseService;
 import xyz.xkun.crm.constants.CrmConstant;
+import xyz.xkun.crm.dao.CustomerLossMapper;
 import xyz.xkun.crm.dao.CustomerMapper;
 import xyz.xkun.crm.po.Customer;
+import xyz.xkun.crm.po.CustomerLoss;
 import xyz.xkun.crm.query.CustomerQuery;
 import xyz.xkun.crm.utils.AssertUtil;
 import xyz.xkun.crm.utils.MathUtil;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +29,9 @@ import java.util.Map;
 public class CustomerService extends BaseService<Customer> {
     @Autowired
     private CustomerMapper customerMapper;
+
+    @Autowired
+    private CustomerLossMapper customerLossMapper;
 
     public List<Map> queryDataDicsByDicName(String dicName) {
         return customerMapper.queryDataDicsByDicName(dicName);
@@ -52,4 +58,31 @@ public class CustomerService extends BaseService<Customer> {
 
     }
 
+    //查询流失客户
+    public void addLossCustomerds() {
+        /**
+         * 1.查询所有流失客户
+         * 2.批量插入客户流失表
+         */
+        List<Customer> customerList = customerMapper.queryLossCustomerds();
+        if (!CollectionUtils.isEmpty(customerList)) {
+            // 存流失客户列表
+            List<CustomerLoss> customerLossList = new ArrayList<>();
+
+            for (Customer customer : customerList) {
+                CustomerLoss customerLoss = new CustomerLoss();
+                customerLoss.setCusNo(customer.getKhno());
+                customerLoss.setCusName(customer.getName());
+                customerLoss.setCusManager(customer.getCusManager());
+                customerLoss.setState(0);// 预流失
+                customerLoss.setIsValid(1);// 有效
+                customerLoss.setCreateDate(new Date());
+                customerLoss.setUpdateDate(new Date());
+                customerLossList.add(customerLoss);
+            }
+            AssertUtil.isTrue(customerLossMapper.saveBatch(customerLossList) < customerLossList.size()
+                    , CrmConstant.OPS_FAILED_MSG);
+            AssertUtil.isTrue(customerMapper.updateCustomerState(customerList) < customerList.size(), CrmConstant.OPS_FAILED_MSG);
+        }
+    }
 }

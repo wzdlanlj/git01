@@ -279,6 +279,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
 
+    <!--搜索功能-->
     <select id="queryByParams" parameterType="customerQuery" resultMap="BaseResultMap">
         SELECT * FROM t_customer
         <where>
@@ -305,10 +306,46 @@
         t_datadic.data_dic_name = #{dicName}
     </select>
 
+    <!--批量假删除-->
     <update id="deleteBatch" parameterType="int">
         UPDATE t_customer SET is_valid = 0 WHERE id in
         <foreach collection="array" open="(" close=")" item="item" separator=",">
             #{item}
         </foreach>
     </update>
+
+    <!--查询流失客户-->
+    <select id="queryLossCustomerds" resultMap="BaseResultMap">
+         SELECT
+            c.*
+         FROM
+            t_customer AS c
+         WHERE
+            c.is_valid = 1
+            AND
+                DATE_ADD(c.create_date,INTERVAL 6 MONTH) &lt; NOW()
+            AND
+                c.id NOT IN (
+                SELECT
+                    DISTINCT co.cus_id
+                FROM
+                    t_customer_order AS co
+                WHERE
+                    co.is_valid = 1
+                    AND
+                    DATE_ADD(co.order_date,INTERVAL 6 MONTH ) > NOW()
+                )
+            AND c.state = 0
+    </select>
+
+
+    <!--批量更新客户状态-->
+    <update id="updateCustomerState" parameterType="list">
+        UPDATE t_customer SET state = 1 , update_date = NOW() WHERE id IN (
+        <foreach collection="list" item="item" separator=",">
+            #{item.id}
+        </foreach>
+        )
+    </update>
+
 </mapper>
