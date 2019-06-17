@@ -13,7 +13,11 @@
                http://www.springframework.org/schema/tx
                http://www.springframework.org/schema/tx/spring-tx.xsd">
     <context:property-placeholder location="classpath:jdbc.properties"/>
-    <aop:aspectj-autoproxy/>
+    <context:component-scan base-package="xyz.xkun">
+        <context:exclude-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
 
     <!-- 配置数据源 -->
     <!-- 配置c3p0 数据源 -->

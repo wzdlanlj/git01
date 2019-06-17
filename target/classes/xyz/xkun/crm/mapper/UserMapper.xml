@@ -140,8 +140,8 @@
     <select id="queryByParams" parameterType="userQuery" resultMap="user_role">
         SELECT
         t_user.*,
-        t_role.role_name,
-        t_role.id AS role_ids
+        GROUP_CONCAT(t_role.role_name) role_name,
+        GROUP_CONCAT(t_role.id) AS role_ids
         FROM
         t_user
         LEFT JOIN t_user_role ON t_user.id = t_user_role.user_id
@@ -158,10 +158,21 @@
                 AND phone like concat("%",#{phone},"%")
             </if>
         </where>
-        ORDER BY t_user.id
+        GROUP BY t_user.id
     </select>
     <!--假删除-->
     <update id="fakeDelete" parameterType="int">
         UPDATE  t_user SET is_valid = 0 where id = #{id}
     </update>
+
+    <!--to通过用户id 查询所有模块的权限码-->
+    <select id="queryAllAclValueByUserId" parameterType="int" resultType="string">
+        SELECT
+            DISTINCT t_permission.acl_value AS aclVaue
+        FROM
+            t_user_role
+        LEFT JOIN t_permission ON t_user_role.role_id = t_permission.role_id
+        WHERE
+            t_user_role.user_id = #{userId}
+    </select>
 </mapper>
