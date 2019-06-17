@@ -14,7 +14,7 @@ public interface CustomerMapper extends BaseDao<Customer> {
 
     public Integer deleteCustomer(Integer id);
 
-    public List<Customer> queryLossCustomerds();
+    public List<Customer> queryLossCustomers();
 
     public Integer updateCustomerState(List<Customer> customers);
 }

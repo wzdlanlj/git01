@@ -64,7 +64,7 @@ public class CustomerService extends BaseService<Customer> {
          * 1.查询所有流失客户
          * 2.批量插入客户流失表
          */
-        List<Customer> customerList = customerMapper.queryLossCustomerds();
+        List<Customer> customerList = customerMapper.queryLossCustomers();
         if (!CollectionUtils.isEmpty(customerList)) {
             // 存流失客户列表
             List<CustomerLoss> customerLossList = new ArrayList<>();
