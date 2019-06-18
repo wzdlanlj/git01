@@ -1,5 +1,7 @@
 package xyz.xkun.crm.query;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 import xyz.xkun.crm.base.BaseQuery;
 
 import java.util.Date;
@@ -19,6 +21,8 @@ public class SaleChanceQuery extends BaseQuery {
 
     private Integer devResult;//开发结果
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private String createDate; //创建时间
 
     public String getCustomerName() {

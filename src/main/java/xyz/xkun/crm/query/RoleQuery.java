@@ -1,5 +1,7 @@
 package xyz.xkun.crm.query;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 import xyz.xkun.crm.base.BaseQuery;
 
 /**
@@ -11,6 +13,8 @@ import xyz.xkun.crm.base.BaseQuery;
  */
 public class RoleQuery extends BaseQuery {
     private String roleName;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private String createDate;
 
     public String getRoleName() {

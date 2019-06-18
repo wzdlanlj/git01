@@ -1,10 +1,7 @@
 package xyz.xkun.crm.query;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
 import xyz.xkun.crm.base.BaseQuery;
 
-import java.util.Date;
 
 /**
  * @title: wzdlanlj@163.com

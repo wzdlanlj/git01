@@ -1,17 +1,17 @@
 <html>
 <head>
-<#include "common.ftl" >
-<script type="text/javascript" src="${ctx}/js/customer.loss.js"></script>
+    <#include "common.ftl" >
+    <script type="text/javascript" src="${ctx}/js/customer.loss.js"></script>
 </head>
 <body style="margin: 1px">
-<table id="dg"  class="easyui-datagrid"
-        pagination="true" rownumbers="true"
+<table id="dg" class="easyui-datagrid"
+       pagination="true" rownumbers="true"
        url="${ctx}/customerLoss/queryCustomerLossByParams" fit="true" toolbar="#tb">
     <thead>
     <tr>
         <th field="cb" checkbox="true" align="center"></th>
         <th field="id" width="50" align="center">编号</th>
-        <th field="cusName" width="200" align="center" >客户名称</th>
+        <th field="cusName" width="200" align="center">客户名称</th>
         <th field="cusNo" width="50" align="center">客户编号</th>
         <th field="cusManager" width="50" align="center">客户经理</th>
         <th field="lastOrderTime" width="50" align="center">上次下单时间</th>
@@ -28,7 +28,7 @@
     <br/>
     客户名称:<input type="text" id="cusName"/>
     客户编号:<input type="text" id="cusNo"/>
-    创建时间:<input id="time" type="text" class="easyui-datebox" ></input>
+    创建时间:<input id="time" type="text" class="easyui-datebox"></input>
     <a href="javascript:queryCustomerLossByParams()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
 </div>
 
